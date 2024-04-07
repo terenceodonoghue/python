@@ -3,4 +3,7 @@
     "editor.formatOnSave": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.defaultInterpreterPath": ".venv/bin/python3",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

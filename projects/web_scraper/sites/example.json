@@ -1,0 +1,12 @@
+{
+    "file": "example.csv",
+    "site": "https://books.toscrape.com/",
+    "page": ".nav-list ul li a",
+    "load": "",
+    "next": ".next a",
+    "item": ".product_pod",
+    "data": {
+        "title": "h3",
+        "price": ".price_color"
+    }
+}
