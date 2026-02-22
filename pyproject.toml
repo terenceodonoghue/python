@@ -12,6 +12,11 @@ dev = [
 [tool.uv]
 package = false
 
+[tool.uv.workspace]
+members = [
+    "projects/solar-cli",
+]
+
 [tool.ruff]
 target-version = "py313"
 line-length = 88
