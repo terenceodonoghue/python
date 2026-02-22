@@ -1,0 +1,31 @@
+services:
+  influxdb:
+    image: influxdb:2
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: adminpassword
+      DOCKER_INFLUXDB_INIT_ORG: homelab
+      DOCKER_INFLUXDB_INIT_BUCKET: solar-raw
+      DOCKER_INFLUXDB_INIT_RETENTION: 720h
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: dev-token
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+
+  solar-svc:
+    image: ghcr.io/terenceodonoghue/solar-svc:latest
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+    environment:
+      INVERTER_URL: ${INVERTER_URL}
+      INVERTER_CAPACITY_W: ${INVERTER_CAPACITY_W}
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_TOKEN: dev-token
+      INFLUX_ORG: homelab
+      INFLUX_BUCKET: solar-raw
+
+volumes:
+  influxdb_data:
