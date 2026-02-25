@@ -6,4 +6,4 @@ Python projects, each independently deployable as a Docker container and publish
 
 ### [home-mcp](projects/home-mcp/)
 
-MCP server that exposes solar production data from InfluxDB. Provides a `query_influxdb` tool for writing and executing Flux queries against solar energy time-series data.
+MCP server that exposes solar production data from InfluxDB. Provides a `query_solar_data` tool for writing and executing Flux queries against solar energy time-series data.
