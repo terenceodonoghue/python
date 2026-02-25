@@ -14,7 +14,7 @@ package = false
 
 [tool.uv.workspace]
 members = [
-    "projects/solar-cli",
+    "projects/home-mcp",
 ]
 
 [tool.ruff]

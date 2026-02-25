@@ -1,13 +1,13 @@
-name: Solar CLI
+name: Home MCP
 
 on:
   push:
     branches: [main]
     paths:
-      - projects/solar-cli/src/**/*.py
-      - projects/solar-cli/pyproject.toml
-      - projects/solar-cli/Dockerfile
-      - .github/workflows/solar-cli.yml
+      - projects/home-mcp/src/**/*.py
+      - projects/home-mcp/pyproject.toml
+      - projects/home-mcp/Dockerfile
+      - .github/workflows/home-mcp.yml
 
 jobs:
   publish:
@@ -30,8 +30,8 @@ jobs:
 
       - uses: docker/build-push-action@v6
         with:
-          context: projects/solar-cli
-          file: projects/solar-cli/Dockerfile
+          context: projects/home-mcp
+          file: projects/home-mcp/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/terenceodonoghue/solar-cli:latest
+          tags: ghcr.io/terenceodonoghue/home-mcp:latest

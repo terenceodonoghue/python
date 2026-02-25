@@ -10,4 +10,7 @@ RUN uv sync --no-dev --no-install-project
 COPY src/ src/
 RUN uv sync --no-dev
 
-ENTRYPOINT [".venv/bin/solar-cli"]
+ENV MCP_TRANSPORT=streamable-http
+EXPOSE 8090
+
+ENTRYPOINT [".venv/bin/home-mcp"]

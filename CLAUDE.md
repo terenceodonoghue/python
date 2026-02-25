@@ -4,7 +4,7 @@
 
 A Python workspace managed by **uv**, with projects in `projects/*`.
 
-- **solar-cli** (`projects/solar-cli`) — CLI agent that queries solar production data in InfluxDB using Claude's tool-use API
+- **home-mcp** (`projects/home-mcp`) — MCP server that exposes solar production data from InfluxDB as a tool
 
 ## Commands
 
@@ -13,8 +13,8 @@ Use **uv** (not pip/pipx/poetry).
 - Lint: `uv run ruff check`
 - Lint (auto-fix): `uv run ruff check --fix`
 - Format: `uv run ruff format`
-- Run solar-cli locally: `cd projects/solar-cli && uv run solar-cli --verbose`
-- Build solar-cli image: `docker build -t solar-cli:latest projects/solar-cli`
+- Run home-mcp locally: `cd projects/home-mcp && uv run home-mcp`
+- Build home-mcp image: `docker build -t home-mcp:latest projects/home-mcp`
 
 ## Conventions
 
