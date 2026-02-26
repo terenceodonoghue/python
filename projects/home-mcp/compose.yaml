@@ -14,8 +14,8 @@ services:
     volumes:
       - influxdb_data:/var/lib/influxdb2
 
-  solar-svc:
-    image: ghcr.io/terenceodonoghue/solar-svc:latest
+  fron-svc:
+    image: ghcr.io/terenceodonoghue/fron-svc:latest
     restart: unless-stopped
     depends_on:
       - influxdb

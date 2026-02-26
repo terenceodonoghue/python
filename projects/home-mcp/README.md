@@ -7,17 +7,17 @@ MCP server that exposes solar production data from InfluxDB. Provides a `query_s
 - Python 3.13+
 - [uv](https://docs.astral.sh/uv/)
 - Docker and Docker Compose
-- A [solar-svc](https://github.com/terenceodonoghue/go/tree/main/services/solar-svc) instance writing data to InfluxDB (or the bundled dev compose)
+- A [fron-svc](https://github.com/terenceodonoghue/go/tree/main/services/fron-svc) instance writing data to InfluxDB (or the bundled dev compose)
 
 ## Quick start
 
-Start InfluxDB and solar-svc:
+Start InfluxDB and fron-svc:
 
 ```sh
 docker compose up -d
 ```
 
-> solar-svc requires `INVERTER_URL` and `INVERTER_CAPACITY_W` — set them in a `.env` file or export them before running `docker compose up`.
+> fron-svc requires `INVERTER_URL` and `INVERTER_CAPACITY_W` — set them in a `.env` file or export them before running `docker compose up`.
 
 Install dependencies:
 
