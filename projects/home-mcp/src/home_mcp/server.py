@@ -9,6 +9,7 @@ mcp = FastMCP(
     "home-mcp",
     host=os.environ.get("MCP_HOST", "0.0.0.0"),
     port=int(os.environ.get("MCP_PORT", "8090")),
+    streamable_http_path="/",
 )
 
 _influx = InfluxDBClient(
@@ -31,14 +32,17 @@ def query_solar_data(query: str) -> str:
     Measurement: inverter
     Tag: device_id = "fronius"
 
-    ### Buckets (choose based on time range)
+    ### Buckets (choose by time range — this affects query speed)
 
-    - solar-raw: 30-day retention, 5-second granularity. Use for "today",
-      "yesterday", "last few days".
-    - solar-hourly: 365-day retention, hourly means/last values. Use for
-      "last week", "last month".
-    - solar-daily: Permanent retention, daily aggregates. Use for "last
-      year", "all time", comparisons across months.
+    - solar-raw: 30-day retention, 5-second granularity.
+      Use ONLY for "today" or "yesterday". Never query more than 2 days.
+    - solar-hourly: 365-day retention, 1-hour aggregates.
+      Use for "last week", "last month", or any range from 2 days to 1 year.
+    - solar-daily: Permanent retention, 1-day aggregates.
+      Use for "last year", "all time", or multi-month comparisons.
+
+    IMPORTANT: Querying solar-raw for more than 2 days will be very slow.
+    Always prefer solar-hourly or solar-daily for longer ranges.
 
     ### Fields
 
@@ -97,6 +101,20 @@ def query_solar_data(query: str) -> str:
       |> filter(fn: (r) => r._measurement == "inverter"
           and r._field == "month_energy")
       |> last()
+
+    Q: "How much energy did I produce last week?"
+    from(bucket: "solar-hourly")
+      |> range(start: -7d)
+      |> filter(fn: (r) => r._measurement == "inverter"
+          and r._field == "day_energy")
+      |> last(column: "_value")
+
+    Q: "Compare monthly production this year"
+    from(bucket: "solar-daily")
+      |> range(start: -365d)
+      |> filter(fn: (r) => r._measurement == "inverter"
+          and r._field == "day_energy")
+      |> aggregateWindow(every: 1mo, fn: sum)
 
     Args:
         query: A complete Flux query string. Must start with
