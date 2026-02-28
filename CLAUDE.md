@@ -8,6 +8,8 @@ A Python workspace managed by **uv**, with projects in `projects/*`.
 
 ## Commands
 
+- First-time setup: `make setup` (installs Homebrew tools, syncs uv dependencies, and installs pre-commit hooks)
+
 Use **uv** (not pip/pipx/poetry).
 
 - Lint: `uv run ruff check`
