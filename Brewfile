@@ -1,0 +1,5 @@
+brew "gitleaks"
+brew "pre-commit"
+brew "trivy"
+brew "uv"
+cask "docker-desktop"
