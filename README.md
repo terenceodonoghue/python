@@ -1,5 +1,7 @@
 # python
 
+![Home MCP](https://github.com/terenceodonoghue/python/actions/workflows/home-mcp.yml/badge.svg)
+
 Python projects, each independently deployable as a Docker container and published to GitHub Container Registry.
 
 ## Projects

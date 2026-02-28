@@ -22,6 +22,10 @@ Use **uv** (not pip/pipx/poetry).
 - Projects live in `projects/`, each with its own `pyproject.toml` and `Dockerfile`
 - Commit messages use imperative present tense (e.g., "Add feature", "Fix bug")
 
+## CI
+
+- `home-mcp.yml` — security scan (Gitleaks, CodeQL), Docker build, Trivy image scan, and publish to ghcr.io on push to main (path-filtered to `projects/home-mcp/**`)
+
 ## Code style
 
 Handled entirely by Ruff — do not manually enforce formatting rules.
