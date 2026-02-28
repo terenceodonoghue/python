@@ -9,7 +9,6 @@ mcp = FastMCP(
     "home-mcp",
     host=os.environ.get("MCP_HOST", "0.0.0.0"),
     port=int(os.environ.get("MCP_PORT", "8090")),
-    streamable_http_path="/",
 )
 
 _influx = InfluxDBClient(

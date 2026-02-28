@@ -81,7 +81,7 @@ For a remote server (e.g., behind a reverse proxy), use [`mcp-remote`](https://w
   "mcpServers": {
     "home-mcp": {
       "command": "npx",
-      "args": ["mcp-remote", "https://mcp.example.com/mcp"]
+      "args": ["mcp-remote", "https://home.codebydesign.dev/mcp"]
     }
   }
 }
