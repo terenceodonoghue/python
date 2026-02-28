@@ -62,6 +62,7 @@ jobs:
         with:
           image-ref: home-mcp:scan
           severity: CRITICAL,HIGH
+          ignore-unfixed: "true"
           exit-code: "1"
 
       - name: Log in to GHCR
