@@ -1,11 +1,16 @@
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: /projects/home-mcp
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: weekly
+      interval: monthly
 
   - package-ecosystem: docker
     directory: /projects/home-mcp
     schedule:
-      interval: weekly
+      interval: monthly
+
+  - package-ecosystem: uv
+    directory: /projects/home-mcp
+    schedule:
+      interval: monthly
