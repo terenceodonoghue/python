@@ -1,0 +1,25 @@
+services:
+  tech-mcp:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8091:8091"
+    volumes:
+      - tech_mcp_chroma:/app/data/chroma
+      - tech_mcp_data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8091/health').raise_for_status()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+        reservations:
+          memory: 256m
+
+volumes:
+  tech_mcp_chroma:
+  tech_mcp_data:

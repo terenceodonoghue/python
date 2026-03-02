@@ -1,0 +1,24 @@
+{
+  "problem": "Auth API returning 502 when accessed through Caddy reverse proxy",
+  "attempts": [
+    {
+      "action": "Checked auth-api container logs for errors",
+      "outcome": "No errors in auth-api logs, service appeared healthy",
+      "why_failed": "Issue was at the proxy layer, not the application"
+    },
+    {
+      "action": "Tested direct connection to auth-api:8081 from within Docker network",
+      "outcome": "Direct connection worked fine, returned 200",
+      "why_failed": "Confirmed issue was specifically in the Caddy routing"
+    },
+    {
+      "action": "Checked Caddy logs for the failing request",
+      "outcome": "Found 'dial tcp: lookup auth-api: no such host' error",
+      "why_failed": "This was the actual root cause — DNS resolution failure"
+    }
+  ],
+  "root_cause": "The auth-api container was not on the same Docker network as Caddy. After updating compose.yaml to add a shared network, Caddy could not resolve the hostname. The fix was ensuring both services are in the default compose network — Docker Compose creates this automatically but the auth-api service had a custom network defined that isolated it.",
+  "solution": "Removed the custom network configuration from auth-api in compose.yaml. Both services now use the default compose network and Caddy can resolve auth-api by hostname.",
+  "repos": ["auth-api", "homelab"],
+  "tags": ["caddy", "502", "docker", "networking", "dns"]
+}

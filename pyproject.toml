@@ -15,6 +15,7 @@ package = false
 [tool.uv.workspace]
 members = [
     "projects/home-mcp",
+    "projects/tech-mcp",
 ]
 
 [tool.ruff]

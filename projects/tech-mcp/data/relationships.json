@@ -1,0 +1,51 @@
+{
+    "auth-api": {
+        "consumed_by": [
+            "auth-web"
+        ],
+        "depends_on": [],
+        "description": "WebAuthn/passkey authentication service written in Go",
+        "type": "service"
+    },
+    "fron-svc": {
+        "depends_on": [],
+        "description": "Fronius solar inverter polling service written in Go",
+        "type": "service"
+    },
+    "auth-web": {
+        "consumes": [
+            "auth-api"
+        ],
+        "depends_on": [],
+        "description": "Login and registration UI for passkey auth",
+        "type": "webapp"
+    },
+    "homelab": {
+        "hosts": [
+            "auth-api",
+            "fron-svc",
+            "auth-web",
+            "home-mcp",
+            "tech-mcp"
+        ],
+        "depends_on": [],
+        "description": "Infrastructure - Docker, Caddy, Ansible, Pi config",
+        "type": "infrastructure"
+    },
+    "tech-mcp": {
+        "depends_on": [
+            "homelab"
+        ],
+        "description": "Knowledge base MCP server for cross-repo context",
+        "type": "mcp",
+        "mcp_server": true
+    },
+    "home-mcp": {
+        "depends_on": [
+            "homelab"
+        ],
+        "description": "MCP server for querying solar data from InfluxDB",
+        "type": "mcp",
+        "mcp_server": true
+    }
+}

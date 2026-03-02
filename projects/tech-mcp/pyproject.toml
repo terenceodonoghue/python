@@ -1,0 +1,24 @@
+[project]
+name = "tech-mcp"
+version = "0.1.0"
+description = "MCP knowledge base server for cross-repo context"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]",
+    "chromadb",
+    "httpx",
+    "langchain-text-splitters",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[project.scripts]
+tech-mcp = "tech_mcp.__main__:main"
